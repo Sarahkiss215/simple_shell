@@ -6,7 +6,7 @@
  *
  * Return: Nothing.
  */
-void rev_string(char *s)
+void _revString(char *s)
 {
 	int index = 0, n, length;
 	char *string, temp;
