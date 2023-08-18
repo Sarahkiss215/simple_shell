@@ -13,20 +13,20 @@ char **get_token(char *input)
 	char **tokenptr;
 	char *token;
 
-	size = TOK_BUFSIZE;
+	size = TOKEN_BUF_SIZE;
 	tokenptr = malloc(sizeof(char *) * (size));
 	if (tokenptr == NULL)
 	{
 		write(STDERR_FILENO, ": allocation error\n", 18);
 		exit(EXIT_FAILURE);
 	}
-	token = _strtok(input, TOK_DELIM);
+	token = _strtok(input, TOKEN_DELIM);
 	tokenptr[0] = token;
 	for (index = 1; token != NULL; index++)
 	{
 		if (index == size)
 		{
-			size += TOK_BUFSIZE;
+			size += TOKEN_BUF_SIZE;
 			tokenptr = realloc_dptr(tokenptr, index, sizeof(char *) * size);
 			if (tokenptr == NULL)
 			{
@@ -34,7 +34,7 @@ char **get_token(char *input)
 				exit(EXIT_FAILURE);
 			}
 		}
-		token = _strtok(NULL, TOK_DELIM);
+		token = _strtok(NULL, TOKEN_DELIM);
 		tokenptr[index] = token;
 	}
 	return (tokenptr);
@@ -123,7 +123,7 @@ char *_swapchar(char *input, int bool)
  *
  * Return: Nothing.
  */
-void go_to_next(list_op **list_p list_ln **list_l, list_sh *info)
+void go_to_next(list_op **list_p, list_ln **list_l, list_sh *info)
 {
 	int loop_op;
 	list_op *ls_p;
@@ -136,16 +136,16 @@ void go_to_next(list_op **list_p list_ln **list_l, list_sh *info)
 	{
 		if (info->status == 0)
 		{
-			if (ls_p->operator == '&' || ls_p->operator == ';')
+			if (ls_p->oper == '&' || ls_p->oper == ';')
 				loop_op = 0;
-			if (ls_p->operator == '|')
+			if (ls_p->oper == '|')
 				ls_l = ls_l->next, ls_p = ls_p->next;
 		}
 		else
 		{
-			if (ls_p->operator == '|' || ls_p->operator == ';')
+			if (ls_p->oper == '|' || ls_p->oper == ';')
 				loop_op = 0;
-			if (ls_p->operator == '&')
+			if (ls_p->oper == '&')
 				ls_l = ls_l->next, ls_p = ls_p->next;
 		}
 		if (ls_p != NULL && !loop_op)
@@ -176,7 +176,7 @@ int _splitcmd(list_sh *info, char *input)
 	while (list_l != NULL)
 	{
 		info->input = list_l->line;
-		info->args = split_line(info->input);
+		info->args = get_token(info->input);
 		loop = line_exec(info);
 		free(info->args);
 		if (loop == 0)
