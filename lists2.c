@@ -3,13 +3,13 @@
 /**
  * *add_var_end - adds a variable at the end of list_var.
  * @head: head of the linked list.
- * @len_var: length of the variable.
+ * @var_len: length of the variable.
  * @val: value of the variable.
- * @len_val: length of the value.
+ * @val_len: length of the value.
  *
  * Return: address of the head.
  */
-list_var *add_var_end(list_var **head, int len_var, char *val, int len_val)
+list_var *add_var_end(list_var **head, int var_len, char *val, int val_len)
 {
 	list_var *newvar, *temp;
 
