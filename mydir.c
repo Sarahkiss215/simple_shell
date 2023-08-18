@@ -53,7 +53,7 @@ void cd_home(list_sh *info)
 	homedir = get_env("HOME", info->_environ);
 	if (homedir == NULL)
 	{
-		_setEnv("OLDPWD", pwdir, info);
+		setEnv("OLDPWD", pwdir, info);
 		free(pwdir);
 		return;
 	}
@@ -152,7 +152,7 @@ void cd_dot(list_sh *info)
 		_setEnv("PWD", "/", info);
 	}
 	info->status = 0;
-	free(cp_pwdir);
+	free(cp_pwdir1);
 }
 
 /**
