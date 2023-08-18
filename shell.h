@@ -11,6 +11,7 @@
 #include <sys/types.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <stddef.h>
 
 #define BUF_SIZE 1024
 #define TOKEN_BUF_SIZE 128

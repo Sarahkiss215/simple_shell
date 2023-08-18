@@ -100,7 +100,7 @@ void print_data(list_sh *info, char **av)
 }
 
 /**
- * free_data: frees data structure
+ * free_data - frees data structure
  * @info: data structure
  *
  * Return: Nothing.

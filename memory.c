@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * _memcpy - copies memory between void pointers.
  * @dest: destination pointer.

@@ -108,7 +108,7 @@ void setEnv(char *name, char *value, list_sh *info)
 		}
 		free(environ_var);
 	}
-	info->_environ = _reallocdp(info->_environ,
+	info->_environ = realloc_dptr(info->_environ,
 			index, sizeof(char *) * (index + 2));
 	info->_environ[index] = _copyinfo(name, value);
 	info->_environ[index + 1] = NULL;

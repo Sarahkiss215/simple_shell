@@ -64,8 +64,8 @@ void cd_home(list_sh *info)
 		return;
 	}
 
-	_setEnv("OLDPWD", pwdir, info);
-	_setEnv("PWD", homedir, info);
+	setEnv("OLDPWD", pwdir, info);
+	setEnv("PWD", homedir, info);
 	free(pwdir);
 	info->status = 0;
 }
@@ -89,11 +89,11 @@ void cd_back(list_sh *info)
 	else
 		cp_oldpwd = _strdup(oldpwd);
 
-	_setEnv("OLDPWD", cp_pwdir, info);
+	setEnv("OLDPWD", cp_pwdir, info);
 	if (chdir(cp_oldpwd) == -1)
-		_setEnv("PWD", cp_pwdir, info);
+		setEnv("PWD", cp_pwdir, info);
 	else
-		_setEnv("PWD", cp_oldpwd, info);
+		setEnv("PWD", cp_oldpwd, info);
 
 	pwdir = get_env("PWD", info->_environ);
 	write(STDOUT_FILENO, pwdir, _strlen(pwdir));
@@ -119,11 +119,11 @@ void cd_dot(list_sh *info)
 
 	getcwd(pwd, sizeof(pwd));
 	cp_pwdir1 = _strdup(pwd);
-	_setEnv("OLDPWD", cp_pwdir1, info);
+	setEnv("OLDPWD", cp_pwdir1, info);
 	dir = info->args[1];
 	if (_strcmp(".", dir) == 0)
 	{
-		_setEnv("PWD", cp_pwdir1, info);
+		setEnv("PWD", cp_pwdir1, info);
 		free(cp_pwdir1);
 		return;
 	}
@@ -144,12 +144,12 @@ void cd_dot(list_sh *info)
 	if (cp_pwdir2 != NULL)
 	{
 		chdir(cp_pwdir2);
-		_setEnv("PWD", cp_pwdir2, info);
+		setEnv("PWD", cp_pwdir2, info);
 	}
 	else
 	{
 		chdir("/");
-		_setEnv("PWD", "/", info);
+		setEnv("PWD", "/", info);
 	}
 	info->status = 0;
 	free(cp_pwdir1);
@@ -174,9 +174,9 @@ void cd_to(list_sh *info)
 		return;
 	}
 	cp_pwdir = _strdup(pwd);
-	_setEnv("OLDPWD", cp_pwdir, info);
+	setEnv("OLDPWD", cp_pwdir, info);
 	cpy_dir = _strdup(dir);
-	_setEnv("PWD", cpy_dir, info);
+	setEnv("PWD", cpy_dir, info);
 	free(cp_pwdir);
 	free(cpy_dir);
 	info->status = 0;
