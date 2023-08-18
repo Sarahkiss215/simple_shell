@@ -110,19 +110,19 @@ int _checkvar(list_var **head, char *str, char *st, list_sh *data)
 		if (str[index] == '$')
 		{
 			if (str[index + 1] == '?')
-				add_node(head, 2, st, lst), index++;
+				add_var_end(head, 2, st, lst), index++;
 			else if (str[index + 1] == '$')
-				add_node(head, 2, data->pid, lpd), index++;
+				add_var_end(head, 2, data->pid, lpd), index++;
 			else if (str[index + 1] == '\n')
-				add_node(head, 0, NULL, 0);
+				add_var_end(head, 0, NULL, 0);
 			else if (str[index + 1] == '\0')
-				add_node(head, 0, NULL, 0);
+				add_var_end(head, 0, NULL, 0);
 			else if (str[index + 1] == ' ')
-				add_node(head, 0, NULL, 0);
+				add_var_end(head, 0, NULL, 0);
 			else if (str[index + 1] == '\t')
-				add_node(head, 0, NULL, 0);
+				add_var_end(head, 0, NULL, 0);
 			else if (str[index + 1] == ';')
-				add_node(head, 0, NULL, 0);
+				add_var_end(head, 0, NULL, 0);
 			else
 				_checkenv(head, str + index, data);
 		}
@@ -152,7 +152,7 @@ void _checkenv(list_var **head, char *str, list_sh *data)
 			if (_envr[row][chr] == '=')
 			{
 				lval = _strlen(_envr[row] + chr + 1);
-				add_node(head, j, _envr[row] + chr + 1, lval);
+				add_var_end(head, j, _envr[row] + chr + 1, lval);
 				return;
 			}
 			if (str[index] == _envr[row][chr])
@@ -168,5 +168,5 @@ void _checkenv(list_var **head, char *str, list_sh *data)
 			break;
 	}
 
-	add_node(head, index, NULL, 0);
+	add_var_end(head, index, NULL, 0);
 }
