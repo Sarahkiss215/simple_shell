@@ -14,7 +14,7 @@ int get_error(list_sh *info, int err_val)
 	switch (err_val)
 	{
 		case -1:
-			error = env_error(info
+			error = env_error(info);
 			break;
 		case 126:
 			error = path_126_error(info);
