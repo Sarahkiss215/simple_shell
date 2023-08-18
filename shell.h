@@ -17,7 +17,7 @@
 #define TOKEN_DELIM " \t\r\n\a"
 
 /* pointer to array of pointers of string(environment) */
-extern char **environ
+extern char **environ;
 
 /**
  * struct p_list_op - singly linked list
@@ -200,7 +200,7 @@ int _getlen(int n);
 char **get_token(char *input);
 void add_nodes(list_op **head_op, list_ln **head_ln, char *input);
 char *_swapchar(char *input, int bool);
-void go_to_next(list_op **list_p list_ln **list_l, list_sh *info);
+void go_to_next(list_op **list_p, list_ln **list_l, list_sh *info);
 int _splitcmd(list_sh *info, char *input);
 
 /* var.c */
