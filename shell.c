@@ -17,7 +17,7 @@ void _loopsh(list_sh *info)
 		str = print_str(&i_eof);
 		if (i_eof != -1)
 		{
-			str = no_comment(str);
+			str = del_comment(str);
 			if (str == NULL)
 				continue;
 			if (check_esyntax(info, str) == 1)
@@ -27,7 +27,7 @@ void _loopsh(list_sh *info)
 				continue;
 			}
 			str = replace_var(str, info);
-			loop = sep_cmd(info, str);
+			loop = _splitcmd(info, str);
 			info->counter += 1;
 			free(str);
 		}
