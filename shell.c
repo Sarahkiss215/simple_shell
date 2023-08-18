@@ -70,3 +70,49 @@ char *del_comment(char *str)
 	}
 	return (str);
 }
+
+/**
+ * print_data - Initialize data structure
+ * @info: relevant information
+ * @av: argument vector
+ *
+ * Return: Nothing
+ */
+void print_data(list_sh *info, char **av)
+{
+	unsigned int index;
+
+	info->av = av;
+	info->input = NULL;
+	info->args = NULL;
+	info->status = 0;
+	info->counter = 1;
+
+	for (index = 0; environ[index]; index++)
+		;
+	info->_environ = malloc(sizeof(char *) * (index + 1));
+	for (index = 0; environ[index]; index++)
+	{
+		info->_environ[index] = _strdup(environ[index]);
+	}
+	info->_environ[index] = NULL;
+	info->pid = aux_itoa(getpid());
+}
+
+/**
+ * free_data: frees data structure
+ * @info: data structure
+ *
+ * Return: Nothing.
+ */
+void free_data(list_sh *info)
+{
+	unsigned int index = 0;
+
+	for (; info->_environ[index]; index++)
+	{
+		free(info->_environ[index]);
+	}
+	free(info->_environ);
+	free(info->pid);
+}
