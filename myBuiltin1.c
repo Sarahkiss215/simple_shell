@@ -16,11 +16,11 @@ void info_envbuiltin(void)
 }
 
 /**
- * _setenv - Help information for the builtin setenv
+ * set_envbuiltin - Help information for the builtin setenv
  *
  * Return: Nothing.
  */
-void _setenv(void)
+void set_envbuiltin(void)
 {
 	char *help = "setenv: setenv (const char *name, const char *value,";
 
@@ -32,11 +32,11 @@ void _setenv(void)
 }
 
 /**
- * _unsetenv - Help information for the builtin unsetenv
+ * unset_envbuiltin - Help information for the builtin unsetenv
  *
  * Return: Nothing.
  */
-void _unsetenv(void)
+void unset_envbuiltin(void)
 {
 	char *help = "unsetenv: unsetenv (const char *name)\n\t";
 
