@@ -152,7 +152,7 @@ void _checkenv(list_var **head, char *str, list_sh *data)
 			if (_envr[row][chr] == '=')
 			{
 				lval = _strlen(_envr[row] + chr + 1);
-				add_var_end(head, j, _envr[row] + chr + 1, lval);
+				add_var_end(head, index, _envr[row] + chr + 1, lval);
 				return;
 			}
 			if (str[index] == _envr[row][chr])
@@ -161,7 +161,7 @@ void _checkenv(list_var **head, char *str, list_sh *data)
 				break;
 		}
 	}
-	for (index = 0; str[index]; indeex++)
+	for (index = 0; str[index]; index++)
 	{
 		if (str[index] == ' ' || str[index] == '\t' ||
 				str[index] == ';' || str[index] == '\n')
