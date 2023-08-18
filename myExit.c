@@ -25,7 +25,7 @@ int exit_sh(list_sh *info)
 			info->status = 2;
 			return (1);
 		}
-		indo->status = (ustatus % 256);
+		info->status = (ustatus % 256);
 	}
 	return (0);
 }
