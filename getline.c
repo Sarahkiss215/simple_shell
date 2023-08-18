@@ -29,18 +29,18 @@ void ass_line(char **ptr, size_t *n, char *str, size_t j)
 
 	if (*ptr == NULL)
 	{
-		if  (j > BUFSIZE)
+		if  (j > BUF_SIZE)
 			*n = j;
 		else
-			*n = BUFSIZE;
+			*n = BUF_SIZE;
 		*ptr = str;
 	}
 	else if (*n < j)
 	{
-		if (j > BUFSIZE)
+		if (j > BUF_SIZE)
 			*n = j;
 		else
-			*n = BUFSIZE;
+			*n = BUF_SIZE;
 		*ptr = str;
 	}
 	else
@@ -71,7 +71,7 @@ ssize_t get_line(char **ptr, size_t *n, FILE *stream)
 		fflush(stream);
 	else
 		return (-1);
-	buffer = malloc(sizeof(char) * BUFSIZE);
+	buffer = malloc(sizeof(char) * BUF_SIZE);
 	if (buffer == 0)
 		return (-1);
 	while (i != '\n')
@@ -87,15 +87,15 @@ ssize_t get_line(char **ptr, size_t *n, FILE *stream)
 			str++;
 			break;
 		}
-		if (str >= BUFSIZE)
+		if (str >= BUF_SIZE)
 			buffer = _realloc(buffer, str, str + 1);
-		buffer[str] = t;
+		buffer[str] = i;
 		str++;
 	}
 	buffer[str] = '\0';
 	ass_line(ptr, n, buffer, str);
 	strline = str;
 	if (line != 0)
-		input = 0;
+		str = 0;
 	return (strline);
 }
