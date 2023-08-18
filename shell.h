@@ -27,7 +27,7 @@ extern char **environ;
 typedef struct p_list_op
 {
 	char oper;
-	struct op_list_p *next;
+	struct p_list_op *next;
 } list_op;
 
 /**
