@@ -18,9 +18,9 @@ list_var *add_var_end(list_var **head, int len_var, char *val, int len_val)
 	{
 		return (NULL);
 	}
-	newvar->len_var = len_var;
+	newvar->var_len = var_len;
 	newvar->val = val;
-	newvar->len_val = len_val;
+	newvar->val_len = val_len;
 	newvar->next = NULL;
 	temp = *head;
 	if (temp == NULL)
