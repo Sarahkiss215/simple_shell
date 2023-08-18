@@ -59,7 +59,7 @@ void print_esyntax(list_sh *info, char *input, int index, int bool)
 	msg3 = "\" unexpected\n";
 	counter = aux_itoa(info->counter);
 	len = _strlen(info->av[0]) + _strlen(counter);
-	len += _strlen(msg) + _strlen(msg2) + _strlen(msg3) + 2;
+	len += _strlen(msg1) + _strlen(msg2) + _strlen(msg3) + 2;
 	error = malloc(sizeof(char) * (len + 1));
 	if (error == 0)
 	{
@@ -129,7 +129,7 @@ int op_error(char *input, int index, char last)
 
 		if (last == '|')
 		{
-			counter = char_repeater(input, 0);
+			counter = char_repeated(input, 0);
 			if (counter == 0 || counter > 1)
 				return (index);
 		}
