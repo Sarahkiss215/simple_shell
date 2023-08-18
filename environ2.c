@@ -16,7 +16,7 @@ char *_copyinfo(char *name, char *value)
 	value_len = _strlen(value);
 	length = name_len + value_len + 2;
 
-	newname = malloc(sizeof(char) * (len));
+	newname = malloc(sizeof(char) * (length));
 	_strcpy(newname, name);
 	_strcat(newname, "=");
 	_strcat(newname, value);
